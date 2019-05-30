@@ -1,9 +1,13 @@
 package com.example.androideatitserver.Common;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.text.TextUtils;
 
 import com.example.androideatitserver.Model.Request;
 import com.example.androideatitserver.Model.User;
@@ -71,5 +75,27 @@ public class Common {
             hashtext = "0" + hashtext;
         }
         return hashtext;
+    }
+    public static boolean isValidPhone(CharSequence phone) {
+        if (TextUtils.isEmpty(phone)) {
+            return false;
+        } else {
+            return android.util.Patterns.PHONE.matcher(phone).matches();
+        }
+    }
+    public static boolean isConnectedToInternet(Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager != null) {
+            NetworkInfo[] info = connectivityManager.getAllNetworkInfo();
+            if (info != null) {
+                for (int i = 0; i < info.length; i++) {
+                    if (info[i].getState() == NetworkInfo.State.CONNECTED) {
+                        return true;
+                    }
+                }
+            }
+
+        }
+        return false;
     }
 }

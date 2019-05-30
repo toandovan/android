@@ -30,9 +30,17 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"
-        android:weightSum="1"
+        android:weightSum="2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <Button
+            android:layout_weight="1"
+            android:text="Sign Up"
+            android:layout_width="0dp"
+            android:textColor="@android:color/black"
+            android:layout_margin="8dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnSignUp"/>
         <Button
             android:layout_weight="1"
             android:text="Sign In"
